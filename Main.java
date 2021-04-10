@@ -12,15 +12,17 @@ public class Main
     frame1.setSize(500,500);
 
     //---------------------Panels-------------------
-    JPanel stats = new JPanel(new GridLayout(2,2,20,20));
+    JPanel stats = new JPanel(new GridLayout(1,4,20,20));
 
     //--------------------Labels--------------------
-    JLabel playerStats = new JLabel("Health:100\tHealth:100");
+    JLabel playerInfo = new JLabel("<html>Name:null  <br/> Height:null<br/>Age:null<br/>Status:Alive<br/>Journey: Incomplete<html>");
+
+    JLabel playerStats = new JLabel("<html>Character Stats<br/>Health:<br/>     100<br/>Hunger:<br/>     100");
 
 
 
 
-
+    stats.add(playerInfo);
     stats.add(playerStats); 
 
     frame1.getContentPane().add(BorderLayout.NORTH,stats);
