@@ -13,7 +13,7 @@ public class Main
 
     //---------------------Panels-------------------
     JPanel stats = new JPanel(new GridLayout(1,4,20,20));//Jpanel to hold the stats
-    JPanel colors = new JPanel(new GridLayout(3,2,15,20));//JPanel to hold the color to indicate player condition within the stats JPanel
+    
 
     //--------------------Labels--------------------
     JLabel playerInfo = new JLabel("<html>Character Info<br/>Name:null  <br/> Height:null<br/>Age:null<br/>Status:Alive<br/>Journey: Incomplete<html>");
@@ -24,15 +24,19 @@ public class Main
 
     //------------------Images------------------------
     ImageIcon greenImage = new ImageIcon(new ImageIcon("green.png").getImage().getScaledInstance(150,20, Image.SCALE_DEFAULT), "Stable");
-    JLabel greenLabelPic = new JLabel(greenImage);
+    
+    ImageIcon yellowImage = new ImageIcon(new ImageIcon("yellow.png").getImage().getScaledInstance(150,20, Image.SCALE_DEFAULT), "hurt");
 
+    ImageIcon color = greenImage;
+    JLabel greenLabelPic = new JLabel(color);
+
+    greenLabelPic.setIcon(yellowImage);
     
 
     stats.add(playerInfo);
     stats.add(playerStats); 
     stats.add(animalStats);
-    stats.add(colors);
-    colors.add(greenLabelPic);
+    stats.add(greenLabelPic);
 
     frame1.getContentPane().add(BorderLayout.NORTH, stats);
 
