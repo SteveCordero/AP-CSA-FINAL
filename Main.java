@@ -22,15 +22,14 @@ public class Main
 
     JPanel path = new JPanel(new GridLayout(2,1,20,20));
     
-
     //--------------------Labels--------------------
-    JLabel playerInfo = new JLabel("<html>Character Info<br/>Name:" + name + "<br/> Day:null<br/>Status:Alive<br/>Journey: Incomplete<br/><br/><html>");
+    JLabel playerInfo = new JLabel("<html>Character Info<br/>Name:" + name + "<br/> Day:0<br/>Status:Alive<br/>Journey: Incomplete<br/><br/><html>");
 
     JLabel playerStats = new JLabel("<html>Character Stats<br/>Health:<br/>100<br/>Hunger:<br/>100<br/><br/><br/><html>");
 
     JLabel animalStats = new JLabel("<html>Animal Stats<br/>Health:<br/>100<br/>Hunger:<br/>100<br/><br/><br/>");
 
-    JLabel pathway = new JLabel("    xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox");
+    JLabel pathway = new JLabel("<html>((((xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox))))<br/>((((xxxx|<html>");
 
     JLabel greenLabelPic = new JLabel();
 
@@ -57,5 +56,8 @@ public class Main
     frame1.getContentPane().add(BorderLayout.CENTER, path);
 
     frame1.setVisible(true);
-  }
+  }//end main method
+
+
+
 }//end main class
