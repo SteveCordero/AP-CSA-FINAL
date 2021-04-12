@@ -72,6 +72,6 @@ public class Character
   public String toString()
   {
     return  name + " ,Congratulations!!! you have made it to the end" 
-  }
+  }//end toString or the ending message for the game
 
 }//end Character Class
