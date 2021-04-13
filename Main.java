@@ -18,7 +18,7 @@ public class Main
     //---------------------Panels-------------------
     JPanel stats = new JPanel(new GridLayout(1,4,20,20));//Jpanel to hold the stats
 
-    JPanel path = new JPanel(new GridLayout(2,1,20,20));
+    JPanel path = new JPanel(new GridLayout(3,1,20,20));
 
     JPanel actions = new JPanel(new GridLayout(1,3,75,75));
     
@@ -30,6 +30,9 @@ public class Main
     JLabel animalStats = new JLabel("<html>Animal Stats<br/>Health:<br/>100<br/>Hunger:<br/>100<br/><br/><br/>");
 
     JLabel pathway = new JLabel("<html>((((xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox))))<br/>((((xxxx|<html>");
+
+    JLabel emptyLabel = new JLabel();
+    JLabel emptyLabel2 = new JLabel();
 
     JLabel greenLabelPic = new JLabel();
 
@@ -88,7 +91,9 @@ public class Main
     stats.add(animalStats);
     stats.add(greenLabelPic);
 
+    path.add(emptyLabel);
     path.add(pathway);
+    path.add(emptyLabel2);
 
     actions.add(feedCharacter);
     actions.add(feedAnimal);
