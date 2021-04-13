@@ -5,9 +5,9 @@ public class Hunger extends Character
   private int hungerEffect;
 
   //constructor
-  public Hunger(String name, int health, int hunger, int speed, int daysTraveled, int healthEffect, int hungerEffect)
+  public Hunger(int health, int hunger, int speed, int daysTraveled, int healthEffect, int hungerEffect)
   {
-    super(name, helath, hungerm speed, daysTraveled);
+    super(helath, hungerm speed, daysTraveled);
     this.healthEffect = healthEffect;
     this.hungerEffect = hungerEffect;
   }//end full args constructor for hunger

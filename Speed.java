@@ -5,9 +5,9 @@ public class Speed extends Character
   private int hungerEffect;
 
   //Constructor
-  public Speed(String name, int health, int hunger, int speed, int daysTraveled, String transport, int hungerEffect)
+  public Speed(int health, int hunger, int speed, int daysTraveled, String transport, int hungerEffect)
   {
-    super(name, health, hunger, speed, daysTraveled);
+    super(health, hunger, speed, daysTraveled);
     this.transport = transport;
     this.hungerEffect = hungerEffect;
   }//end full args Constructor
