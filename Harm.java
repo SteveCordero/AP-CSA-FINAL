@@ -1,4 +1,4 @@
-public class Harm extends Character
+public class Harm extends Stats
 {
   //Variables
   private int healthEffect;

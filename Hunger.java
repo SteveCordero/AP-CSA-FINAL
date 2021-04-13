@@ -1,4 +1,4 @@
-public class Hunger extends Character
+public class Hunger extends Stats
 {
   //variables
   private int healthEffect;

@@ -1,4 +1,4 @@
-public class Character
+public class ]Stats
 {
   //Instance Variables
   private int health;
@@ -7,7 +7,7 @@ public class Character
   private int daysTraveled;
 
   //Constructors
-  public Character(int health, int hunger, int speed, int daysTraveled)
+  public Stats(int health, int hunger, int speed, int daysTraveled)
   {
     this.health = health;
     this.hunger = hunger;

@@ -1,4 +1,4 @@
-public class Speed extends Character
+public class Speed extends Stats
 {
   //Instance Variables
   private String transport;
