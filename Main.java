@@ -13,7 +13,7 @@ public class Main
     
     JFrame frame1 = new JFrame("Time Adventure");
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame1.setSize(600,500);
+    frame1.setSize(600,400);
 
     //---------------------Panels-------------------
     JPanel stats = new JPanel(new GridLayout(1,4,20,20));//Jpanel to hold the stats
@@ -53,12 +53,25 @@ public class Main
         System.out.println("This currently does nothing");
       }
     });//this is the button to feed the character
+
+    JButton feedAnimal = new JButton("Feed Animal");
+
+    feedAnimal.addActionListener(new ActionListener()
+    {
+      public void actionPerformed(ActionEvent e)
+      {
+        System.out.println("This also does nothing");
+      }
+    });//this is the button to feed the transportation if available
     
 
     //---------------Setting the Dimensions of the Buttons------
     Dimension d = new Dimension(100,100);
     feedCharacter.setPreferredSize(d);
+    feedAnimal.setPreferredSize(d);
+    
 
+    //Adding all components to their respective Panels
     stats.add(playerInfo);
     stats.add(playerStats); 
     stats.add(animalStats);
@@ -67,8 +80,7 @@ public class Main
     path.add(pathway);
 
     actions.add(feedCharacter);
-
-
+    actions.add(feedAnimal);
 
     frame1.getContentPane().add(BorderLayout.NORTH, stats);
 
