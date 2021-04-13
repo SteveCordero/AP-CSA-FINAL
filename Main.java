@@ -10,9 +10,7 @@ public class Main
     Scanner scan = new Scanner(System.in);
     System.out.println("Please Enter A Name: ");
     String name = scan.nextLine();
-
-
-
+    
     JFrame frame1 = new JFrame("Time Adventure");
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame1.setSize(600,500);

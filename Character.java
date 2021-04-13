@@ -14,7 +14,7 @@ public class Character
     this.health = health;
     this.hunger = hunger;
     this.speed = speed;
-    this.daysTraveled;
+    this.daysTraveled = daysTraveled;
   }//end full args constructor
 
   //getters and setters
@@ -71,7 +71,7 @@ public class Character
   //toString
   public String toString()
   {
-    return  name + " ,Congratulations!!! you have made it to the end" 
+    return  name + " ,Congratulations!!! you have made it to the end";
   }//end toString or the ending message for the game
 
 }//end Character Class
