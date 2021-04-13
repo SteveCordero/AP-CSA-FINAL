@@ -19,6 +19,8 @@ public class Main
     JPanel stats = new JPanel(new GridLayout(1,4,20,20));//Jpanel to hold the stats
 
     JPanel path = new JPanel(new GridLayout(2,1,20,20));
+
+    JPanel actions = new JPanel(new GridLayout(1,3,100,100));
     
     //--------------------Labels--------------------
     JLabel playerInfo = new JLabel("<html>Character Info<br/>Name:" + name + "<br/> Day:0<br/>Status:Alive<br/>Journey: Incomplete<br/><br/><html>");
@@ -39,8 +41,23 @@ public class Main
     ImageIcon redImage = new ImageIcon(new ImageIcon("red.jpg").getImage().getScaledInstance(100,100, Image.SCALE_DEFAULT),"Critically damaged");
     
     greenLabelPic.setIcon(yellowImage);
-    greenLabelPic.setIcon(redImage);
+    // greenLabelPic.setIcon(redImage);
     
+    //-----------------Buttons------------------------
+    JButton feedCharacter = new JButton("Feed Character");
+
+    feedCharacter.addActionListener(new ActionListener()
+    {
+      public void actionPerformed(ActionEvent e)
+      {
+        System.out.println("This currently does nothing");
+      }
+    });//this is the button to feed the character
+    
+
+    //---------------Setting the Dimensions of the Buttons------
+    Dimension d = new Dimension(100,100);
+    feedCharacter.setPreferredSize(d);
 
     stats.add(playerInfo);
     stats.add(playerStats); 
@@ -49,9 +66,15 @@ public class Main
 
     path.add(pathway);
 
+    actions.add(feedCharacter);
+
+
+
     frame1.getContentPane().add(BorderLayout.NORTH, stats);
 
     frame1.getContentPane().add(BorderLayout.CENTER, path);
+
+    frame1.getContentPane().add(BorderLayout.SOUTH, actions);
 
     frame1.setVisible(true);
   }//end main method
