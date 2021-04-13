@@ -13,14 +13,14 @@ public class Main
     
     JFrame frame1 = new JFrame("Time Adventure");
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame1.setSize(600,400);
+    frame1.setSize(650,400);
 
     //---------------------Panels-------------------
     JPanel stats = new JPanel(new GridLayout(1,4,20,20));//Jpanel to hold the stats
 
     JPanel path = new JPanel(new GridLayout(2,1,20,20));
 
-    JPanel actions = new JPanel(new GridLayout(1,3,100,100));
+    JPanel actions = new JPanel(new GridLayout(1,3,75,75));
     
     //--------------------Labels--------------------
     JLabel playerInfo = new JLabel("<html>Character Info<br/>Name:" + name + "<br/> Day:0<br/>Status:Alive<br/>Journey: Incomplete<br/><br/><html>");
@@ -54,6 +54,7 @@ public class Main
       }
     });//this is the button to feed the character
 
+
     JButton feedAnimal = new JButton("Feed Animal");
 
     feedAnimal.addActionListener(new ActionListener()
@@ -65,11 +66,21 @@ public class Main
     });//this is the button to feed the transportation if available
     
 
+    JButton move = new JButton("Move");
+
+    move.addActionListener(new ActionListener()
+    {
+      public void actionPerformed(ActionEvent e)
+      {
+        System.out.println("And at last this one currently does nothign as well");
+      }
+    });//this will be the button to move the "character" across the board
+
     //---------------Setting the Dimensions of the Buttons------
     Dimension d = new Dimension(100,100);
     feedCharacter.setPreferredSize(d);
     feedAnimal.setPreferredSize(d);
-    
+    move.setPreferredSize(d);
 
     //Adding all components to their respective Panels
     stats.add(playerInfo);
@@ -81,6 +92,7 @@ public class Main
 
     actions.add(feedCharacter);
     actions.add(feedAnimal);
+    actions.add(move);
 
     frame1.getContentPane().add(BorderLayout.NORTH, stats);
 
