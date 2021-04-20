@@ -1,4 +1,4 @@
-public class ]Stats
+public class Stats
 {
   //Instance Variables
   private int health;

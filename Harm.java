@@ -3,13 +3,15 @@ public class Harm extends Stats
   //Variables
   private int healthEffect;
   private int speedEffect;
+  private String name;
 
   //Constructors
-  public Harm(int health, int hunger, int speed, int daysTraveled, int healthEffect, int speedEffect)
+  public Harm(int health, int hunger, int speed, int daysTraveled, int healthEffect, int speedEffect, String name)
   {
     super(health, hunger, speed, daysTraveled);
     this.healthEffect = healthEffect;
     this.speedEffect = speedEffect;
+    this.name = name;
   }//end full args constructor for Harm
 
   //getters and setters
@@ -23,6 +25,11 @@ public class Harm extends Stats
     return speedEffect;
   }
 
+  public String getName()
+  {
+    return name;
+  }
+
   public void setHealthEffect(int healthEffect)
   {
     this.healthEffect = healthEffect;
@@ -31,6 +38,11 @@ public class Harm extends Stats
   public void setSpeedEffect(int speedEffect)
   {
     this.speedEffect = speedEffect;
+  }
+
+  public void setName(String name)
+  {
+    this.name = name;
   }
 
   //brain methods

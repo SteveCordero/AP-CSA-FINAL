@@ -7,9 +7,19 @@ public class Main
 {
   public static void main(String []args)
   {
-    Scanner scan = new Scanner(System.in);
-    System.out.println("Please Enter A Name: ");
-    String name = scan.nextLine();
+    String name = JOptionPane.showInputDialog("Enter Name:");
+
+    Stats user = new Stats(100,100,1,0);
+
+    Harm poisonBush = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 10, 1, "poisonous bush");
+
+    Harm cactus = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 15, 1, "cactus");
+
+    Harm werewolf = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 30, 1, "werewolf");
+
+    Harm angryChicken = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 15, 1, "aggrivated chicken");
+
+    System.out.println(angryChicken.getName());
     
     JFrame frame1 = new JFrame("Time Adventure");
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
