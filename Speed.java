@@ -3,6 +3,7 @@ public class Speed extends Stats
   //Instance Variables
   private String transport;
   private int hungerEffect;
+  
 
   //Constructor
   public Speed(int health, int hunger, int speed, int daysTraveled, String transport, int hungerEffect)
@@ -10,6 +11,7 @@ public class Speed extends Stats
     super(health, hunger, speed, daysTraveled);
     this.transport = transport;
     this.hungerEffect = hungerEffect;
+    this.speedEffect = speedEffect;
   }//end full args Constructor
 
   //getters and setter

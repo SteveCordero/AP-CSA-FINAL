@@ -11,6 +11,7 @@ public class Main
 
     Stats user = new Stats(100,100,1,0);
 
+    //-----------Intantiating all Harm Objects------------------------------
     Harm poisonBush = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 10, 1, "poisonous bush");
 
     Harm cactus = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 15, 1, "cactus");
@@ -19,7 +20,21 @@ public class Main
 
     Harm angryChicken = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 15, 1, "aggrivated chicken");
 
-    System.out.println(angryChicken.getName());
+    //------------Instantiating all speed objects-------------------------------
+
+    Speed horse = new Speed(45, 30, 2, user.getDaysTraveled(), "Horse", 4);
+
+    Speed walking = new Speed(user.getHealth(), user.getHunger(), user.getSpeed(). user.getDaysTraveled(), "Walking", 10);
+
+    //-----------Instatiating all hunger objects--------------------------------
+
+    Hunger carrot = new Hunger(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 10, 10);
+
+    Hunger apple = new Hunger(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 15,15);
+
+    Hunger hay = new Hunger(horse.getHealth(), horse.getHunger(), horse.getSpeed(), horse.getDaysTraveled, 5, 2);
+
+    
     
     JFrame frame1 = new JFrame("Time Adventure");
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
