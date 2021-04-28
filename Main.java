@@ -67,9 +67,9 @@ public class Main
     //--------------------Labels--------------------
     JLabel playerInfo = new JLabel("<html>Character Info<br/>Name:" + name + "<br/> Day:0<br/>Status:Alive<br/>Journey: Incomplete<br/><br/><html>");
 
-    JLabel playerStats = new JLabel("<html>Character Stats<br/>Health:<br/>100<br/>Hunger:<br/>100<br/><br/><br/><html>");
+    JLabel playerStats = new JLabel("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:<br/>" + user.getHunger() + "<br/><br/><br/><html>");
 
-    JLabel animalStats = new JLabel("<html>Animal Stats<br/>Health:<br/>100<br/>Hunger:<br/>100<br/><br/><br/>");
+    JLabel animalStats = new JLabel("<html>Animal Stats<br/>Health:<br/>"+ horse.getHealth()+ "<br/>Hunger:<br/>" + horse.getHunger() + "<br/><br/><br/>");
 
     JLabel pathway = new JLabel("<html>((((xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox))))<br/>((((<html>");
 
@@ -130,7 +130,7 @@ public class Main
             {
               user.setHunger(100);
             }
-            playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:" + user.getHunger() + "<br/>100<br/><br/><br/><html>");
+            playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:<br/>" + user.getHunger() + "<br/><br/><br/><html>");
           }
         }
         else
@@ -139,16 +139,40 @@ public class Main
           System.out.println("You have no more food, stop trying.");
         }
       }
-    });//this is the button to feed the character
+    });//this is the button to feed the character, it will update the health and hunger on the playerStats label and will also update the values for hunger and health of the User object
 
 
-    JButton feedAnimal = new JButton("<html>Feed Animal<br/> Food Left: " );
+    JButton feedAnimal = new JButton("<html>Feed Animal<br/> Food Left: " + backpack.getAnimalFood());
 
     feedAnimal.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)
       {
-        System.out.println("This also does nothing");
+        if(backpack.getAnimalFood() > 0)
+        {
+          backpack.setAnimalFood(backpack.getAnimalFood()-1);
+          feedAnimal.setText("<html>Feed Animal<br/>Food Left: " + backpack.getAnimalFood());
+
+          backpack.updateInventory(allFoods, hay);
+          horse.setHealth(horse.getHealth() + hay.getHealthEffect());
+          if(horse.getHealth() > 45)
+          {
+            horse.setHealth(45);
+          }
+
+          horse.setHunger(horse.getHunger() + hay.getHungerEffect());
+          if(horse.getHunger() > 30)
+          {
+            horse.setHunger(30);
+          }
+          animalStats.setText("<html>Animal Stats<br/>Health:<br/>" + horse.getHealth() + "<br/>Hunger:<br/>" + horse.getHunger() + "<br/><br/><br/>");
+    
+        }
+        else
+        {
+          feedAnimal.setText("<html>Feed Animal<br/>Food Left: 0");
+          System.out.println("You have no more animal food, your horse will die soon.");
+        }
       }
     });//this is the button to feed the transportation if available
     
