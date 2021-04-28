@@ -8,6 +8,9 @@ public class Main
   public static void main(String []args)
   {
     String name = JOptionPane.showInputDialog("Enter Name:");
+    String foodChoice = JOptionPane.showInputDialog("Carrots or Apples?");
+    final String foodC = foodChoice.toLowerCase();
+    
 
     Stats user = new Stats(100,100,1,0);
 
@@ -24,7 +27,7 @@ public class Main
 
     Speed horse = new Speed(45, 30, 2, user.getDaysTraveled(), "Horse", 4);
 
-    Speed walking = new Speed(user.getHealth(), user.getHunger(), user.getSpeed(). user.getDaysTraveled(), "Walking", 10);
+    Speed walking = new Speed(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), "Walking", 10);
 
     //-----------Instatiating all hunger objects--------------------------------
 
@@ -32,9 +35,23 @@ public class Main
 
     Hunger apple = new Hunger(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 15,15);
 
-    Hunger hay = new Hunger(horse.getHealth(), horse.getHunger(), horse.getSpeed(), horse.getDaysTraveled, 5, 2);
+    Hunger hay = new Hunger(horse.getHealth(), horse.getHunger(), horse.getSpeed(), horse.getDaysTraveled(), 5, 2);
 
-    
+    //-----------Instantiating inventory object------------------------------------
+
+    Inventory backpack = new Inventory(10,10);
+    ArrayList<Hunger> allFoods = new ArrayList<>();
+
+    if(foodChoice.equals("carrots"))
+    {
+      backpack.fillInventory(allFoods , carrot);
+    }
+    else
+    {
+      backpack.fillInventory(allFoods , apple);
+    }
+
+    backpack.fillInventory(allFoods, hay);
     
     JFrame frame1 = new JFrame("Time Adventure");
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,7 +71,7 @@ public class Main
 
     JLabel animalStats = new JLabel("<html>Animal Stats<br/>Health:<br/>100<br/>Hunger:<br/>100<br/><br/><br/>");
 
-    JLabel pathway = new JLabel("<html>((((xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox))))<br/>((((xxxx|<html>");
+    JLabel pathway = new JLabel("<html>((((xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox))))<br/>((((<html>");
 
     JLabel emptyLabel = new JLabel();
     JLabel emptyLabel2 = new JLabel();
@@ -72,18 +89,60 @@ public class Main
     // greenLabelPic.setIcon(redImage);
     
     //-----------------Buttons------------------------
-    JButton feedCharacter = new JButton("Feed Character");
+    JButton feedCharacter = new JButton("<html>Feed Character<br/>Food Left: " + backpack.getFood());
 
     feedCharacter.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)
       {
-        System.out.println("This currently does nothing");
+        if(backpack.getFood() > 0)
+        {
+          backpack.setFood(backpack.getFood()-1);
+          feedCharacter.setText("<html>Feed Character<br/>Food Left: " + backpack.getFood());
+
+          if(foodC.equals("carrots"))
+          {
+            backpack.updateInventory(allFoods, carrot);
+            user.setHealth(user.getHealth() + carrot.getHealthEffect());
+            if(user.getHealth() > 100)
+            {
+              user.setHealth(100);
+            }
+
+            user.setHunger(user.getHunger() + carrot.getHungerEffect());
+            if(user.getHunger() > 100)
+            {
+              user.setHunger(100);
+            }
+            playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:" + user.getHunger() + "<br/>100<br/><br/><br/><html>");
+          }
+          else
+          {
+            backpack.updateInventory(allFoods, apple);
+            user.setHealth(user.getHealth() + apple.getHealthEffect());
+            if(user.getHealth() > 100)
+            {
+              user.setHealth(100);
+            }
+
+            user.setHunger(user.getHunger() + apple.getHungerEffect());
+            if(user.getHunger() > 100)
+            {
+              user.setHunger(100);
+            }
+            playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:" + user.getHunger() + "<br/>100<br/><br/><br/><html>");
+          }
+        }
+        else
+        {
+          feedCharacter.setText("<html>Feed Character<br/>Food Left: 0");
+          System.out.println("You have no more food, stop trying.");
+        }
       }
     });//this is the button to feed the character
 
 
-    JButton feedAnimal = new JButton("Feed Animal");
+    JButton feedAnimal = new JButton("<html>Feed Animal<br/> Food Left: " );
 
     feedAnimal.addActionListener(new ActionListener()
     {
@@ -132,7 +191,5 @@ public class Main
 
     frame1.setVisible(true);
   }//end main method
-
-
 
 }//end main class

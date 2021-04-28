@@ -7,18 +7,18 @@ public class Hunger extends Stats
   //constructor
   public Hunger(int health, int hunger, int speed, int daysTraveled, int healthEffect, int hungerEffect)
   {
-    super(helath, hungerm speed, daysTraveled);
+    super(health, hunger, speed, daysTraveled);
     this.healthEffect = healthEffect;
     this.hungerEffect = hungerEffect;
   }//end full args constructor for hunger
 
   //getters and setters
-  public int healthEffect()
+  public int getHealthEffect()
   {
     return healthEffect;
   }
 
-  public int hungerEffect()
+  public int getHungerEffect()
   {
     return hungerEffect;
   }

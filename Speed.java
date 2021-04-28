@@ -11,7 +11,6 @@ public class Speed extends Stats
     super(health, hunger, speed, daysTraveled);
     this.transport = transport;
     this.hungerEffect = hungerEffect;
-    this.speedEffect = speedEffect;
   }//end full args Constructor
 
   //getters and setter
