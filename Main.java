@@ -197,7 +197,6 @@ public class Main
       public void actionPerformed(ActionEvent e)
       {
         enemy = (int)(Math.random() *(5 - 1) ) + 1;
-        
 
         if(user.getHealth() == 0 || user.getHunger() == 0 || done)
         {
@@ -212,7 +211,7 @@ public class Main
           pathway.setText("You are dead:(");
 
           done = true;
-        }
+        }//end of if the user has died and will update the proper labels accordingly
 
         else if(!horse.isDead(horse.getHealth(), horse.getHunger()))
         {
@@ -268,10 +267,9 @@ public class Main
             }//to go to the basic neutral platform of a O tile which will only do the normal hunger decrease
             playerInfo.setText("<html>Character Info<br/>Name:" + name + "<br/> Day:"+ user.getDaysTraveled()+"<br/>Status:Alive<br/>Journey: Incomplete<br/><br/><html>");
             
-          }//end else for if game is still continuing and horse is still alive
+          }//end else for if the horse is still alive and user is on a "o tile"
 
-          
-        }
+        }//end else if the game is still continuing and the horse is still alive
         else
         {
           position += walking.getSpeed();
@@ -318,26 +316,25 @@ public class Main
 
             playerInfo.setText("<html>Character Info<br/>Name:" + name + "<br/> Day:"+ user.getDaysTraveled()+"<br/>Status:Alive<br/>Journey: Incomplete<br/><br/><html>"); 
 
-          }//end else for if game is still continuing
+          }//end if character is on an O tile and horse is dead
 
-        }//this is if the horse is dead and your new transportation is the basic walking
+        }//this is if the horse is dead and your new transportation is the basic walking and game is still continuing
          
         if(user.getHealth() >= 75)
         {
           greenLabelPic.setIcon(greenImage);
-        }
+        }//checks if status of character is in the green area
         else if(user.getHealth() >= 50)
         {
           greenLabelPic.setIcon(yellowImage);
-        }
+        }//checks if status of character is in the yellow area
         else
         {
           greenLabelPic.setIcon(redImage);
-        }
-      }//end of else statement for when the horse is dead and speed is now walking
-
+        }//checks if status of character is in the red area
+      }//end of actioned performed
       
-    });//this will be the button to move the "character" across the board
+    });//this will be the button to move the "character" across the board and check on the status of the character
 
     //---------------Setting the Dimensions of the Buttons------
     Dimension d = new Dimension(100,100);
