@@ -10,11 +10,13 @@ public class Main
     String name = JOptionPane.showInputDialog("Enter Name:");
     String foodChoice = JOptionPane.showInputDialog("Carrots or Apples?");
     final String foodC = foodChoice.toLowerCase();
-    
+    final String board = "xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox";
 
-    Stats user = new Stats(100,100,1,0);
+    Stats user = new Stats(100,100,3,0);
 
     //-----------Intantiating all Harm Objects------------------------------
+    Harm empty = new Harm(0 ,0 ,0 ,0, 0 ,0 , "empty");
+
     Harm poisonBush = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 10, 1, "poisonous bush");
 
     Harm cactus = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 15, 1, "cactus");
@@ -23,9 +25,16 @@ public class Main
 
     Harm angryChicken = new Harm(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), 15, 1, "aggrivated chicken");
 
+    ArrayList<Harm> enemies = new ArrayList<>();
+    enemies.add(empty);
+    enemies.add(poisonBush);
+    enemies.add(cactus);
+    enemies.add(werewolf);
+    enemies.add(angryChicken);
+
     //------------Instantiating all speed objects-------------------------------
 
-    Speed horse = new Speed(45, 30, 2, user.getDaysTraveled(), "Horse", 4);
+    Speed horse = new Speed(45, 30, 4, user.getDaysTraveled(), "Horse", 4);
 
     Speed walking = new Speed(user.getHealth(), user.getHunger(), user.getSpeed(), user.getDaysTraveled(), "Walking", 10);
 
@@ -114,7 +123,7 @@ public class Main
             {
               user.setHunger(100);
             }
-            playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:" + user.getHunger() + "<br/>100<br/><br/><br/><html>");
+            playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:<br/>" + user.getHunger() + "<br/><br/><br/><html>");
           }
           else
           {
@@ -174,17 +183,160 @@ public class Main
           System.out.println("You have no more animal food, your horse will die soon.");
         }
       }
-    });//this is the button to feed the transportation if available
+    });//this is the button to feed the transportation if transportation is available and will be in charge of updating the JLabel animal Stats to fit the new values of hunger and health
     
 
     JButton move = new JButton("Move");
 
     move.addActionListener(new ActionListener()
     {
+      int position = 0;
+      int enemy = 0;
+      boolean done = false;
+      
       public void actionPerformed(ActionEvent e)
       {
-        System.out.println("And at last this one currently does nothign as well");
-      }
+        enemy = (int)(Math.random() *(5 - 1) ) + 1;
+        
+
+        if(user.getHealth() == 0 || user.getHunger() == 0 || done)
+        {
+          System.out.println("Not Congrats, you have died");
+
+          playerStats.setText("<html>Character Stats<br/>Health:<br/>0<br/>Hunger:<br/>0<br/><br/><br/><html>");
+
+          animalStats.setText("<html>Animal Stats<br/>Health:<br/>0<br/>Hunger:<br/>0<br/><br/><br/>");
+
+          playerInfo.setText("<html>Character Info<br/>Name:" + name + "<br/> Day:"+ user.getDaysTraveled()+"<br/>Status:Dead<br/>Journey: Incomplete<br/><br/><html>");
+
+          pathway.setText("You are dead:(");
+
+          done = true;
+        }
+
+        else if(!horse.isDead(horse.getHealth(), horse.getHunger()))
+        {
+          position += horse.getSpeed();
+          user.setDaysTraveled(user.getDaysTraveled() + 1);
+
+          if(position > board.length())
+          {
+            System.out.println("You won congrats");
+            pathway.setText("<html>((((xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox))))<br/>((((" + board+ "|<html>");
+
+            playerInfo.setText("<html>Character Info<br/>Name:" + name + "<br/> Day:"+ user.getDaysTraveled() +"<br/>Status:Alive<br/>Journey: Complete<br/><br/><html>");
+          }//this is to check if you have won the game or made it to the end of the path
+          else
+          {
+            pathway.setText("<html>((((xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox))))<br/>((((" + board.substring(0,position-1) + "|<html>");
+
+            if(board.substring(position -1, position).equals("x"))
+            {
+              user.setHealth(enemies.get(enemy).updateHealth(user.getHealth(), enemies.get(enemy).getHealthEffect()));
+
+              user.setHunger(user.getHunger()-10);
+
+              horse.setHealth(enemies.get(enemy).updateHealth(horse.getHealth(), enemies.get(enemy).getHealthEffect()));
+
+              horse.setHunger(horse.getHunger()-5);
+              
+              if(user.getHunger() <= 0)
+              {
+                user.setHunger(0);
+              }
+              if(horse.getHunger() <= 0)
+              {
+                horse.setHunger(0);
+              }
+
+              playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:<br/>" + user.getHunger() + "<br/><br/><br/><html>");
+
+              animalStats.setText("<html>Animal Stats<br/>Health:<br/>" + horse.getHealth() + "<br/>Hunger:<br/>" + horse.getHunger() + "<br/><br/><br/>");
+
+
+            }//to check if the player is on a X tile which means harm is meant to be dealt to them as well as the hunger effect
+            else
+            {
+              user.setHunger(user.getHunger()-10);
+
+              horse.setHunger(horse.getHunger()-5);
+
+              playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:<br/>" + user.getHunger() + "<br/><br/><br/><html>");
+
+              animalStats.setText("<html>Animal Stats<br/>Health:<br/>" + horse.getHealth() + "<br/>Hunger:<br/>" + horse.getHunger() + "<br/><br/><br/>");
+
+            }//to go to the basic neutral platform of a O tile which will only do the normal hunger decrease
+            playerInfo.setText("<html>Character Info<br/>Name:" + name + "<br/> Day:"+ user.getDaysTraveled()+"<br/>Status:Alive<br/>Journey: Incomplete<br/><br/><html>");
+            
+          }//end else for if game is still continuing and horse is still alive
+
+          
+        }
+        else
+        {
+          position += walking.getSpeed();
+          user.setDaysTraveled(user.getDaysTraveled() + 1);
+
+          if(position > board.length())
+          {
+            System.out.println("You won congrats");
+            pathway.setText("<html>((((xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox))))<br/>((((" + board+ "|<html>");
+
+            playerInfo.setText("<html>Character Info<br/>Name:" + name + "<br/> Day:"+ user.getDaysTraveled() +"<br/>Status:Alive<br/>Journey: Complete<br/><br/><html>");
+          }//this is to check if you have won the game or made it to the end of the path
+          else
+          {
+            pathway.setText("<html>((((xooxoxooxooxxxxoxoxoxooxxoooxxoxoxoxoxoxoxoxoxoxoxooxooxooxooxooxoxox))))<br/>((((" + board.substring(0,position-1) + "|<html>");
+
+            if(board.substring(position -1, position).equals("x"))
+            {
+              user.setHealth(enemies.get(enemy).updateHealth(user.getHealth(), enemies.get(enemy).getHealthEffect()));
+
+              user.setHunger(user.getHunger()-10);
+
+              horse.setHunger(0);
+              horse.setHealth(0);
+
+              playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:<br/>" + user.getHunger() + "<br/><br/><br/><html>");
+
+              animalStats.setText("<html>Animal Stats<br/>Health:<br/>" + horse.getHealth() + "<br/>Hunger:<br/>" + horse.getHunger() + "<br/><br/><br/>");
+
+
+            }//to check if the player is on a X tile which means harm is meant to be dealt to them as well as the hunger effect
+            else
+            {
+              user.setHunger(user.getHunger()-10);
+
+              horse.setHunger(0);
+              horse.setHealth(0);
+
+              playerStats.setText("<html>Character Stats<br/>Health:<br/>" + user.getHealth() + "<br/>Hunger:<br/>" + user.getHunger() + "<br/><br/><br/><html>");
+
+              animalStats.setText("<html>Animal Stats<br/>Health:<br/>" + horse.getHealth() + "<br/>Hunger:<br/>" + horse.getHunger() + "<br/><br/><br/>");
+
+            }//to go to the basic neutral platform of a O tile which will only do the normal hunger decrease
+
+            playerInfo.setText("<html>Character Info<br/>Name:" + name + "<br/> Day:"+ user.getDaysTraveled()+"<br/>Status:Alive<br/>Journey: Incomplete<br/><br/><html>"); 
+
+          }//end else for if game is still continuing
+
+        }//this is if the horse is dead and your new transportation is the basic walking
+         
+        if(user.getHealth() >= 75)
+        {
+          greenLabelPic.setIcon(greenImage);
+        }
+        else if(user.getHealth() >= 50)
+        {
+          greenLabelPic.setIcon(yellowImage);
+        }
+        else
+        {
+          greenLabelPic.setIcon(redImage);
+        }
+      }//end of else statement for when the horse is dead and speed is now walking
+
+      
     });//this will be the button to move the "character" across the board
 
     //---------------Setting the Dimensions of the Buttons------

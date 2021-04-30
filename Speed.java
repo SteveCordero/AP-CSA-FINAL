@@ -45,4 +45,13 @@ public class Speed extends Stats
     return originalHunger - substractHunger;
   }//end updateHunger method to update the Hunger everytime the player moves
 
+  public boolean isDead(int health, int hunger)
+  {
+    if(hunger <= 0 || health<= 0)
+    {
+      return true;
+    }
+    return false;
+  }//method to check if the transport method isDead
+
 }//end speed class
