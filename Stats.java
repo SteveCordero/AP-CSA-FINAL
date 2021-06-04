@@ -56,6 +56,15 @@ public class Stats
     this.daysTraveled = daysTraveled;
   }
 
+  public String currStats()
+  {
+    return "health: " + health
+          +"\nhunger: " + hunger
+          +"\nspeed:  " + speed
+          +"\ndays traveled: " + daysTraveled + "\n";
+
+  }//end currStats to display the stats of the user
+
   //toString
   public String toString()
   {

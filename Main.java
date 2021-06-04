@@ -66,6 +66,16 @@ public class Main
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame1.setSize(650,400);
 
+    //---------------polymorphism check-------
+    Stats userTest = user;
+    System.out.println(userTest.currStats());
+
+    userTest = carrot;
+    System.out.println(userTest.currStats());
+
+    userTest = horse;
+    System.out.println(userTest.currStats());
+
     //---------------------Panels-------------------
     JPanel stats = new JPanel(new GridLayout(1,4,20,20));//Jpanel to hold the stats
 
@@ -196,7 +206,7 @@ public class Main
       
       public void actionPerformed(ActionEvent e)
       {
-        enemy = (int)(Math.random() *(5 - 1) ) + 1;
+        enemy = (int)(Math.random() *(5 - 1) ) + 1;// this is to randomize the damage output when pressing the move button
 
         if(user.getHealth() == 0 || user.getHunger() == 0 || done)
         {

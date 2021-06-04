@@ -54,4 +54,10 @@ public class Speed extends Stats
     return false;
   }//method to check if the transport method isDead
 
+  public String currStats()
+  {
+    return "transport: " + transport
+          +"\nhunger effect: " + hungerEffect;
+  }//end currstats to display the statistics of the speed object
+
 }//end speed class
